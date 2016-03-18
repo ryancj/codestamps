@@ -1,5 +1,6 @@
 #editor {
        position: absolute;
-       width: 500px;
-       height: 400px;
+       width: 50%;
+       height: 90%;
+       border: 1px solid black;
 }
