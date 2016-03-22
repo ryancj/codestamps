@@ -14,4 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ace-rails-ap
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .

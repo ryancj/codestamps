@@ -5,11 +5,16 @@ gem 'interactive_editor'
 gem 'awesome_print'
 gem 'hirb'
 
-# Frontend
+# CSS
 gem 'bootstrap-sass'
 
 # Ace(Text Editor)
 gem 'ace-rails-ap'
+
+# React
+gem 'react-rails'
+
+##############################################################
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
