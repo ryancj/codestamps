@@ -2,11 +2,16 @@ var Stamp = React.createClass({
   getInitialState: function(){
     return {opacity: '1'}
   },
+  deleteStamp: function(){
+    var stamp = this.getDOMNode();
+ React.unmountComponentAtNode(stamp);
+ $(stamp).remove();
+  },
   render: function(){
     console.log("STAMP", this.props)
     var styles = {width: '200px', height: '100px',
-        backgroundColor: 'red', opacity: this.state.opacity}
-    return <div style = {styles}>Stamp</div>
+        backgroundColor: 'red', opacity: this.state.opacity,  position: 'absolute', left: '160px'}
+    return <div style = {styles}><div onClick={this.deleteStamp}>X</div>Stamp</div>
   }
 });
 
@@ -19,7 +24,6 @@ var Editor = React.createClass({
       numberOfStamps: 0
     };
   },
-
   componentDidMount: function(){
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/tomorrow");
@@ -41,7 +45,7 @@ var Editor = React.createClass({
     } else {
       var annotationBox = null;
     }
-    porreturn <div>
+    return <div>
       {annotationBox}
       <div id="editor" className='col-lg-6 col-lg-offset-3'>
 
