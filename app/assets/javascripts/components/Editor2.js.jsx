@@ -1,6 +1,7 @@
 var Stamp = React.createClass({
   render: function(){
-    var styles = {width: 200, height: 100, backgroundColor: 'red', }
+    var styles = {width: 200, height: 100, backgroundColor: 'blue',
+               position: 'absolute', left: 165, top: this.props.yPos}
     return <div style={styles}>Stamp</div>
   }
 });
@@ -24,14 +25,15 @@ var Editor2 = React.createClass({
     });
   },
   handleGutterClick: function(clickEvent){
-    console.log('Gutter Clicked')
     this.setState({isEditing: true,
                    positionX: clickEvent.clientX,
                    positionY: clickEvent.clientY});
+                   console.log(this.state.positionX)
+                   console.log(this.state.positionY)
   },
   render: function(){
     if (this.state.isEditing) {
-      var annotationBox = <Stamp/>;
+      var annotationBox = <Stamp xPos={this.state.positionX} yPos={this.state.positionY}/>;
     } else {
       var annotationBox = null;
     }
