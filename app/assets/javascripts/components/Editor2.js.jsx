@@ -6,10 +6,17 @@ var Stamp = React.createClass({
       position: 'absolute',
       backgroundColor: 'red',
       borderRadius: 10,
-      left: 150,
+      left: 145,
       top: this.props.yPos - 50
     }
-    return <div id='talkbubble' style={styles}>Stamp</div>
+    return (
+      <div id='talkbubble' style={styles}>
+        <span>
+          <button className='btn btn-primary glyphicon glyphicon-pencil'/>
+          <button className='btn btn-danger glyphicon glyphicon-trash'/>
+        </span>
+      </div>
+    )
   }
 });
 

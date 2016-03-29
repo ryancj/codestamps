@@ -15,7 +15,7 @@ var Stamp = React.createClass({
   }
 });
 
-var Editor = React.createClass({
+var oldEditor = React.createClass({
   getInitialState: function() {
     return {
       isEditing: false,
