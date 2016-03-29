@@ -5,7 +5,7 @@
   border: 1px solid black;
 }
 
-#stamp:before {
+#stamptail:before {
   content:"";
   position: absolute;
   left: 100%;
@@ -17,6 +17,12 @@
   border-bottom: 13px solid transparent;
 }
 
-textarea {
-  
+#stampform {
+  background-color: transparent;
+  color: white;
+  border: none;
+  overflow: auto;
+  outline: none;
+  box-shadow: none;
+  resize:none;
 }

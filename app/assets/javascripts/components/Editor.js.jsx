@@ -22,7 +22,7 @@ var Stamp = React.createClass({
       top: this.props.yPos - 50
     }
     return (
-      <div id='stamp' style={styles}>
+      <div id='stamptail' style={styles}>
         <span>
           <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
           <button onClick={this.remove} className='btn btn-danger glyphicon glyphicon-trash'/>
@@ -41,8 +41,8 @@ var Stamp = React.createClass({
       top: this.props.yPos - 50
     }
     return (
-      <div id='stamp' style={styles}>
-        <textarea className='form-control'>Insert comment</textarea>
+      <div id='stamptail' style={styles}>
+        <textarea id='stampform' className='form-control'>Insert comment</textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
     )
