@@ -1,8 +1,15 @@
 var Stamp = React.createClass({
   render: function(){
-    var styles = {width: 200, height: 100, backgroundColor: 'blue',
-               position: 'absolute', left: 165, top: this.props.yPos}
-    return <div style={styles}>Stamp</div>
+    var styles = {
+      width: 200,
+      height: 100,
+      position: 'absolute',
+      backgroundColor: 'red',
+      borderRadius: 10,
+      left: 150,
+      top: this.props.yPos - 50
+    }
+    return <div id='talkbubble' style={styles}>Stamp</div>
   }
 });
 
