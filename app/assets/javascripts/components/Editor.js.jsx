@@ -5,10 +5,13 @@ var Stamp = React.createClass({
   edit: function(){
     this.setState({isEditing: true})
   },
+  save: function(){
+    this.setState({isEditing: false})
+  },
   remove: function(){
     alert('This is the remove function')
   },
-  render: function(){
+  renderDisplay: function(){
     var styles = {
       width: 200,
       height: 100,
@@ -19,13 +22,38 @@ var Stamp = React.createClass({
       top: this.props.yPos - 50
     }
     return (
-      <div id='talkbubble' style={styles}>
+      <div id='stamp' style={styles}>
         <span>
           <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
           <button onClick={this.remove} className='btn btn-danger glyphicon glyphicon-trash'/>
         </span>
       </div>
     )
+  },
+  renderForm: function(){
+    var styles = {
+      width: 200,
+      height: 100,
+      position: 'absolute',
+      backgroundColor: 'red',
+      borderRadius: 10,
+      left: 145,
+      top: this.props.yPos - 50
+    }
+    return (
+      <div id='stamp' style={styles}>
+        <textarea className='form-control'>Insert comment</textarea>
+        <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
+      </div>
+    )
+  },
+  render: function(){
+    if (this.state.isEditing) {
+      return this.renderForm();
+    }
+    else {
+      return this.renderDisplay();
+    }
   }
 });
 

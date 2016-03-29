@@ -5,7 +5,7 @@
   border: 1px solid black;
 }
 
-#talkbubble:before {
+#stamp:before {
   content:"";
   position: absolute;
   left: 100%;
@@ -15,4 +15,8 @@
   border-top: 13px solid transparent;
   border-left: 26px solid red;
   border-bottom: 13px solid transparent;
+}
+
+textarea {
+  
 }
