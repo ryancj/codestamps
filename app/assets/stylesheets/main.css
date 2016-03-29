@@ -1,18 +1,18 @@
 #editor {
-       position: absolute;
-       width: 50%;
-       height: 90%;
-       border: 1px solid black;
+  position: absolute;
+  width: 50%;
+  height: 90%;
+  border: 1px solid black;
 }
 
 #talkbubble:before {
-   content:"";
-   position: absolute;
-   left: 100%;
-   top: 35px;
-   width: 0;
-   height: 0;
-   border-top: 13px solid transparent;
-   border-left: 26px solid red;
-   border-bottom: 13px solid transparent;
+  content:"";
+  position: absolute;
+  left: 100%;
+  top: 35px;
+  width: 0;
+  height: 0;
+  border-top: 13px solid transparent;
+  border-left: 26px solid red;
+  border-bottom: 13px solid transparent;
 }
