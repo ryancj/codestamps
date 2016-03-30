@@ -14,6 +14,9 @@ gem 'ace-rails-ap'
 # React
 gem 'react-rails'
 
+# More Frontend
+gem 'jquery-ui-rails'
+
 ##############################################################
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
