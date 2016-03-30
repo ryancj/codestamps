@@ -13,11 +13,15 @@ var Stamp = React.createClass({
       top: this.props.yPos - 50
     };
   },
+  componentDidMount: function(){
+    $(this.getDOMNode()).draggable();
+  },
   edit: function(){
     this.setState({isEditing: true})
   },
   save: function(){
-    this.props.onChange(this.refs.newText.getDOMNode().value, this.props.index);
+    var val = this.refs.newText.getDOMNode().value;
+    alert("TODO: Save note value" + val);
     this.setState({isEditing: false})
   },
   remove: function(){
