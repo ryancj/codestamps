@@ -14,11 +14,11 @@ var Stamp = React.createClass({
     };
   },
   edit: function(){
-    this.setState({isEditing: true})
+    this.setState({isEditing: true});
   },
   save: function(){
     this.props.onChange(this.refs.newText.getDOMNode().value, this.props.index);
-    this.setState({isEditing: false})
+    this.setState({isEditing: false});
   },
   remove: function(){
     this.props.onRemove(this.props.index);
@@ -26,6 +26,7 @@ var Stamp = React.createClass({
   renderDisplay: function(){
     return (
       <div id='stamptail' style={this.style}>
+        <p>{this.props.children}</p>
         <span>
           <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
           <button onClick={this.remove} className='btn btn-danger glyphicon glyphicon-trash'/>
@@ -36,7 +37,7 @@ var Stamp = React.createClass({
   renderForm: function(){
     return (
       <div id='stamptail' style={this.style}>
-        <textarea ref="newText" id='stampform' className='form-control'>Insert comment</textarea>
+        <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}>Insert comment</textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
     )
@@ -67,8 +68,18 @@ var Editor = React.createClass({
       isClicked: false,
       positionX: 0,
       positionY: 0,
-      stamps: []
+      stamps: ['test','test2','test3']
     }
+  },
+  update: function(newText, i){
+    var arr = this.state.stamps;
+    arr[i] = newText;
+    this.setState({stamps: arr});
+  },
+  remove: function(i){
+    var arr = this.state.stamps;
+    arr.splice(i, 1);
+    this.setState({stamps: arr});
   },
   componentDidMount: function(){
     var editor = ace.edit("editor");
@@ -86,6 +97,12 @@ var Editor = React.createClass({
                    positionY: clickEvent.clientY});
                    console.log(this.state.positionX)
                    console.log(this.state.positionY)
+  },
+  eacnNote: function(stamp, i){
+    return (
+            <Stamp style={this.style}
+              key={i} index={i} onChange={this.update} onRemove={this.remove}>{note}</Note>
+          );
   },
   render: function(){
     if (this.state.isClicked) {
