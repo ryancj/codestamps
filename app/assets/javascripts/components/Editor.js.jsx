@@ -2,17 +2,8 @@ var Stamp = React.createClass({
   getInitialState: function(){
     return {isEditing: false}
   },
-  edit: function(){
-    this.setState({isEditing: true})
-  },
-  save: function(){
-    this.setState({isEditing: false})
-  },
-  remove: function(){
-    alert('This is the remove function')
-  },
-  renderDisplay: function(){
-    var styles = {
+  componentWillMount(){
+    this.style = {
       width: 200,
       height: 100,
       position: 'absolute',
@@ -20,9 +11,21 @@ var Stamp = React.createClass({
       borderRadius: 10,
       left: 145,
       top: this.props.yPos - 50
-    }
+    };
+  },
+  edit: function(){
+    this.setState({isEditing: true})
+  },
+  save: function(){
+    this.props.onChange(this.refs.newText.getDOMNode().value, this.props.index);
+    this.setState({isEditing: false})
+  },
+  remove: function(){
+    this.props.onRemove(this.props.index);
+  },
+  renderDisplay: function(){
     return (
-      <div id='stamptail' style={styles}>
+      <div id='stamptail' style={this.style}>
         <span>
           <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
           <button onClick={this.remove} className='btn btn-danger glyphicon glyphicon-trash'/>
@@ -31,18 +34,9 @@ var Stamp = React.createClass({
     )
   },
   renderForm: function(){
-    var styles = {
-      width: 200,
-      height: 100,
-      position: 'absolute',
-      backgroundColor: 'red',
-      borderRadius: 10,
-      left: 145,
-      top: this.props.yPos - 50
-    }
     return (
-      <div id='stamptail' style={styles}>
-        <textarea id='stampform' className='form-control'>Insert comment</textarea>
+      <div id='stamptail' style={this.style}>
+        <textarea ref="newText" id='stampform' className='form-control'>Insert comment</textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
     )
@@ -58,11 +52,22 @@ var Stamp = React.createClass({
 });
 
 var Editor = React.createClass({
+  propTypes: {
+    count: function(props, propName) {
+      if (typeof props[propName] !== "number"){
+          return new Error('The count property must be a number');
+      }
+      if (props[propName] > 100) {
+          return new Error("Creating " + props[propName] + " stamps is ridiculous");
+      }
+    }
+  },
   getInitialState: function(){
     return {
       isClicked: false,
       positionX: 0,
-      positionY: 0
+      positionY: 0,
+      stamps: []
     }
   },
   componentDidMount: function(){
