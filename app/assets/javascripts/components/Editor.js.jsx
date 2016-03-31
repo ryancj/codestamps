@@ -20,8 +20,7 @@ var Stamp = React.createClass({
     this.setState({isEditing: true});
   },
   save: function(){
-    var val = this.refs.newText.getDOMNode().value;
-    alert("TODO: Save note value" + val);
+    this.props.onChange(this.refs.newText.getDOMNode().value, this.props.index);
     this.setState({isEditing: false})
   },
   remove: function(){
@@ -41,10 +40,10 @@ var Stamp = React.createClass({
   renderForm: function(){
     return (
       <div id='stamptail' style={this.style}>
-        <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}>Insert comment</textarea>
+        <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
-    )
+    );
   },
   render: function(){
     if (this.state.isEditing) {
@@ -72,18 +71,12 @@ var Editor = React.createClass({
       isClicked: false,
       positionX: 0,
       positionY: 0,
-      stamps: ['test','test2','test3']
-    }
+      stamps: []
+    };
   },
-  update: function(newText, i){
-    var arr = this.state.stamps;
-    arr[i] = newText;
-    this.setState({stamps: arr});
-  },
-  remove: function(i){
-    var arr = this.state.stamps;
-    arr.splice(i, 1);
-    this.setState({stamps: arr});
+  nextId: function(){
+    this.uniqueId = this.uniqueId || 0;
+    return this.uniqueId++;
   },
   componentDidMount: function(){
     var editor = ace.edit("editor");
@@ -96,17 +89,36 @@ var Editor = React.createClass({
     });
   },
   handleGutterClick: function(clickEvent){
+    this.addStamp();
     this.setState({isClicked: true,
                    positionX: clickEvent.clientX,
-                   positionY: clickEvent.clientY});
-                   console.log(this.state.positionX)
-                   console.log(this.state.positionY)
+                   positionY: clickEvent.clientY,
+                 });
   },
-  eacnNote: function(stamp, i){
-    return (
-            <Stamp style={this.style}
-              key={i} index={i} onChange={this.update} onRemove={this.remove}>{note}</Note>
-          );
+  addStamp: function(text){
+    var arr = this.state.stamps;
+    arr.push({
+      id: this.nextId(),
+      stamp: text
+    });
+    this.setState({stamps: arr});
+  },
+  update: function(newText, i){
+    var arr = this.state.stamps;
+    arr[i].note = newText;
+    this.setState({stamps:arr});
+  },
+  remove: function(i){
+    var arr = this.state.stamps;
+    arr.splice(i, 1);
+    this.setState({stamps: arr});
+  },
+  eachStamp: function(stamp, i){
+    return (<Stamp key={stamp.id}
+              index={i}
+              onChange={this.update}
+              onRemove={this.remove}
+            ></Stamp>);
   },
   render: function(){
     if (this.state.isClicked) {
@@ -117,6 +129,9 @@ var Editor = React.createClass({
     return (
       <div>
         {annotationBox}
+        {this.state.stamps.map(this.eachStamp)}
+        <button className="btn btn-sm btn-success glyphicon glyphicon-plus"
+                onClick={this.addStamp.bind(null, "New Stamp")}/>
         <div id="editor" className='col-lg-6 col-lg-offset-3'>
 
         </div>
