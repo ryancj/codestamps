@@ -5,7 +5,6 @@ var Stamp = React.createClass({
   },
   componentWillMount(){
     this.setState({yPosition: this.props.yPos})
-    console.log('This is the prop yPos: ' + this.props.yPos)
     this.style = {
       width: 200,
       height: 100,
@@ -13,7 +12,7 @@ var Stamp = React.createClass({
       backgroundColor: 'red',
       borderRadius: 10,
       left: 145,
-      top: this.state.yPosition
+      top: this.state.yPosition - 50
     };
   },
   componentDidMount: function(){
@@ -23,7 +22,7 @@ var Stamp = React.createClass({
     this.setState({isEditing: true});
   },
   save: function(){
-    this.props.onChange(this.refs.newText.getDOMNode().value, this.props.index);
+    this.props.onChange(this.refs.newText.value, this.props.index);
     this.setState({isEditing: false})
   },
   remove: function(){
@@ -32,8 +31,6 @@ var Stamp = React.createClass({
   renderDisplay: function(){
     return (
       <div id='stamptail' style={this.style}>
-        <h1>{this.style.top}</h1>
-        <h1>{this.props.yPos}</h1>
         <p>{this.props.children}</p>
         <span>
           <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
@@ -45,7 +42,7 @@ var Stamp = React.createClass({
   renderForm: function(){
     return (
       <div id='stamptail' style={this.style}>
-        <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}>New Stamp</textarea>
+        <textarea ref="newText" id='stampform' className='form-control' defaultValue='New Stamp'></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
     );
@@ -60,7 +57,7 @@ var Stamp = React.createClass({
   }
 });
 
-// /////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 var Editor = React.createClass({
   propTypes: {
@@ -97,14 +94,10 @@ var Editor = React.createClass({
     });
   },
   handleGutterClick: function(clickEvent){
-
-    console.log('this is from handleGutterClick ' + clickEvent.clientY )
-
     this.setState({
                    positionX: clickEvent.clientX,
                    positionY: clickEvent.clientY,
                  });
-                 console.log('this is from handleGutterClick ' + this.state.positionY )
     this.addStamp();
   },
   addStamp: function(text){
@@ -133,14 +126,10 @@ var Editor = React.createClass({
               yPos={this.state.positionY}
             ></Stamp>);
   },
-  yMouse: function(e){
-    this.setState({currentMouseY: e.clientY })
-  },
   render: function(){
     return (
-      <div onMouseMove={this.yMouse}>
+      <div>
         {this.state.stamps.map(this.eachStamp)}
-        <h2>{this.state.currentMouseY}</h2>
         <div id="editor" className='col-lg-6 col-lg-offset-3'>
 
         </div>
