@@ -42,7 +42,7 @@ var Stamp = React.createClass({
   renderForm: function(){
     return (
       <div id='stamptail' style={this.style}>
-        <textarea ref="newText" id='stampform' className='form-control' defaultValue='New Stamp'></textarea>
+        <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
     );
@@ -110,7 +110,7 @@ var Editor = React.createClass({
   },
   update: function(newText, i){
     var arr = this.state.stamps;
-    arr[i].note = newText;
+    arr[i].stamp = newText;
     this.setState({stamps:arr});
   },
   remove: function(i){
@@ -124,7 +124,7 @@ var Editor = React.createClass({
               onChange={this.update}
               onRemove={this.remove}
               yPos={this.state.positionY}
-            ></Stamp>);
+            >{stamp.stamp}</Stamp>);
   },
   render: function(){
     return (
