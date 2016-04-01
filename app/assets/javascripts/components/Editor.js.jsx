@@ -18,21 +18,25 @@ var Stamp = React.createClass({
   componentDidMount: function(){
     $(this.getDOMNode()).draggable();
   },
+  swapSides: function(){
+    alert('this swaps sides');
+  },
   edit: function(){
     this.setState({isEditing: true});
+  },
+  remove: function(){
+    this.props.onRemove(this.props.index);
   },
   save: function(){
     this.props.onChange(this.refs.newText.value, this.props.index);
     this.setState({isEditing: false})
-  },
-  remove: function(){
-    this.props.onRemove(this.props.index);
   },
   renderDisplay: function(){
     return (
       <div id='stamptail' style={this.style}>
         <p>{this.props.children}</p>
         <span>
+          <button onClick={this.swapSides} className='btn btn-primary glyphicon glyphicon-resize-horizontal'/>
           <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
           <button onClick={this.remove} className='btn btn-danger glyphicon glyphicon-trash'/>
         </span>
