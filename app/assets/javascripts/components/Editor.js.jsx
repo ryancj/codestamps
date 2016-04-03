@@ -68,7 +68,7 @@ var Stamp = React.createClass({
 var Editor = React.createClass({
   getInitialState: function(){
     return {
-      isClicked: false,
+      theme: this.props.theme,
       positionX: 0,
       positionY: 0,
       stamps: [],
@@ -83,8 +83,10 @@ var Editor = React.createClass({
   },
   componentDidMount: function(){
     var editor = ace.edit("editor");
+    
+    editor.$blockScrolling = Infinity
     editor.setTheme("ace/theme/tomorrow");
-    editor.getSession().setMode("ace/mode/ruby");
+    editor.getSession().setMode("ace/mode/" + this.state.theme);
 
     var reactComp = this;
     editor.on('gutterclick', function(e){
@@ -129,7 +131,8 @@ var Editor = React.createClass({
   render: function(){
     return (
       <div>
-        <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/> 
+        {//<button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>}
+        }
         {this.state.stamps.map(this.eachStamp)}
         <div id="editor" className='col-lg-6 col-lg-offset-3'>
 
