@@ -1,3 +1,5 @@
+//Stamp
+
 var Stamp = React.createClass({
   getInitialState: function(){
     return {isEditing: false,
@@ -12,7 +14,7 @@ var Stamp = React.createClass({
       backgroundColor: 'red',
       borderRadius: 10,
       left: 145,
-      top: this.state.yPosition - 50
+      top: this.state.yPosition - 50 //To align mouse click with stamp tip
     };
   },
   componentDidMount: function(){
@@ -64,16 +66,6 @@ var Stamp = React.createClass({
 ///////////////////////////////////////////////////////////////////////////////
 
 var Editor = React.createClass({
-  propTypes: {
-    count: function(props, propName) {
-      if (typeof props[propName] !== "number"){
-          return new Error('The count property must be a number');
-      }
-      if (props[propName] > 100) {
-          return new Error("Creating " + props[propName] + " stamps is ridiculous");
-      }
-    }
-  },
   getInitialState: function(){
     return {
       isClicked: false,
@@ -87,6 +79,8 @@ var Editor = React.createClass({
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
   },
+  componentWillMount: function(){
+  },
   componentDidMount: function(){
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/tomorrow");
@@ -96,6 +90,8 @@ var Editor = React.createClass({
     editor.on('gutterclick', function(e){
       reactComp.handleGutterClick(e);
     });
+
+    editor.setValue(this.props.codeBlock);
   },
   handleGutterClick: function(clickEvent){
     this.setState({
@@ -133,6 +129,7 @@ var Editor = React.createClass({
   render: function(){
     return (
       <div>
+        <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/> 
         {this.state.stamps.map(this.eachStamp)}
         <div id="editor" className='col-lg-6 col-lg-offset-3'>
 
