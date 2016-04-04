@@ -52,7 +52,7 @@ var Stamp = React.createClass({
   },
   renderForm: function(){
     return (
-      <div id='stamptail' style={this.style}>
+      <div className='stamptest' id='stamptail' style={this.style}>
         <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>

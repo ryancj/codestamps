@@ -13,7 +13,7 @@
   width: 0;
   height: 0;
   border-top: 13px solid transparent;
-  border-left: 26px solid red;
+  border-left: 26px solid #67D5B5;
   border-bottom: 13px solid transparent;
 }
 
@@ -28,5 +28,5 @@
 }
 
 .stamptest {
-  background-color: red;
+  background-color: #67D5B5;
 }
