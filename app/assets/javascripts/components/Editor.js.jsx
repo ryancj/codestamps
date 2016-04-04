@@ -3,7 +3,8 @@
 var Stamp = React.createClass({
   getInitialState: function(){
     return {isEditing: false,
-            stampColor: 'red',
+            stampColor: 'color-green',
+            stampTail: 'stamptail',
             yPosition: this.props.yPos}
   },
   componentWillMount(){
@@ -12,7 +13,6 @@ var Stamp = React.createClass({
       width: 200,
       height: 100,
       position: 'absolute',
-      // backgroundColor: this.state.stampColor,
       borderRadius: 10,
       left: 145,
       top: this.state.yPosition - 50 //To align mouse click with stamp tip
@@ -22,7 +22,15 @@ var Stamp = React.createClass({
     $(this.getDOMNode()).draggable();
   },
   changeColor: function(){
-    this.setState({stampColor: 'blue'});
+    if (this.state.stampColor === 'color-green'){
+      this.setState({stampColor: 'color-pink'});
+    } else if (this.state.stampColor === 'color-pink'){
+      this.setState({stampColor: 'color-purple'});
+    } else if (this.state.stampColor === 'color-purple'){
+      this.setState({stampColor: 'color-blue'});
+    } else if (this.state.stampColor === 'color-blue'){
+      this.setState({stampColor: 'color-green'});
+    }
   },
   swapSides: function(){
     alert('this swaps sides');
@@ -39,7 +47,7 @@ var Stamp = React.createClass({
   },
   renderDisplay: function(){
     return (
-      <div id='stamptail' style={this.style} className='stamptest'>
+      <div className={this.state.stampColor} style={this.style} id={this.state.stampTail}>
         <p>{this.props.children}</p>
         <span>
           <button onClick={this.changeColor} className='btn btn-primary btn-sm glyphicon glyphicon-tint'/>
@@ -52,7 +60,7 @@ var Stamp = React.createClass({
   },
   renderForm: function(){
     return (
-      <div className='stamptest' id='stamptail' style={this.style}>
+      <div className={this.state.stampColor} style={this.style} id='stamptail' >
         <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>

@@ -27,6 +27,18 @@
   resize:none;
 }
 
-.stamptest {
+.color-green {
   background-color: #67D5B5;
+}
+
+.color-pink {
+  background-color: #EE7785;
+}
+
+.color-purple {
+  background-color: #C89EC4;
+}
+
+.color-blue {
+  background-color: #84B1ED;
 }
