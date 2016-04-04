@@ -1,15 +1,27 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.glyphicon-tint {
+  top: 55px;
+  left: 45px;
+}
+
+.glyphicon-resize-horizontal {
+  top: 55px;
+  left: 50px;
+}
+
 .glyphicon-pencil {
-  top: 50px;
-  left: 110px;
+  top: 55px;
+  left: 55px;
 }
 
 .glyphicon-trash {
-  top: 50px;
-  left: 115px;
+  top: 55px;
+  left: 60px;
 }
+
+///////////////////////////
 
 .glyphicon-floppy-disk {
   top: 12px;

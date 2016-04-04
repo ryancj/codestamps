@@ -1,8 +1,9 @@
-//Stamp
+//Stamp Component
 
 var Stamp = React.createClass({
   getInitialState: function(){
     return {isEditing: false,
+            stampColor: 'red',
             yPosition: this.props.yPos}
   },
   componentWillMount(){
@@ -11,7 +12,7 @@ var Stamp = React.createClass({
       width: 200,
       height: 100,
       position: 'absolute',
-      backgroundColor: 'red',
+      // backgroundColor: this.state.stampColor,
       borderRadius: 10,
       left: 145,
       top: this.state.yPosition - 50 //To align mouse click with stamp tip
@@ -19,6 +20,9 @@ var Stamp = React.createClass({
   },
   componentDidMount: function(){
     $(this.getDOMNode()).draggable();
+  },
+  changeColor: function(){
+    this.setState({stampColor: 'blue'});
   },
   swapSides: function(){
     alert('this swaps sides');
@@ -35,12 +39,13 @@ var Stamp = React.createClass({
   },
   renderDisplay: function(){
     return (
-      <div id='stamptail' style={this.style}>
+      <div id='stamptail' style={this.style} className='stamptest'>
         <p>{this.props.children}</p>
         <span>
-          <button onClick={this.swapSides} className='btn btn-primary glyphicon glyphicon-resize-horizontal'/>
-          <button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>
-          <button onClick={this.remove} className='btn btn-danger glyphicon glyphicon-trash'/>
+          <button onClick={this.changeColor} className='btn btn-primary btn-sm glyphicon glyphicon-tint'/>
+          <button onClick={this.swapSides} className='btn btn-primary btn-sm glyphicon glyphicon-resize-horizontal'/>
+          <button onClick={this.edit} className='btn btn-primary btn-sm glyphicon glyphicon-pencil'/>
+          <button onClick={this.remove} className='btn btn-danger btn-sm glyphicon glyphicon-trash'/>
         </span>
       </div>
     );
@@ -65,6 +70,8 @@ var Stamp = React.createClass({
 
 ///////////////////////////////////////////////////////////////////////////////
 
+//Editor Component
+
 var Editor = React.createClass({
   getInitialState: function(){
     return {
@@ -79,12 +86,10 @@ var Editor = React.createClass({
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
   },
-  componentWillMount: function(){
-  },
   componentDidMount: function(){
     var editor = ace.edit("editor");
-    
-    editor.$blockScrolling = Infinity
+
+    editor.$blockScrolling = Infinity //To prevent warning
     editor.setTheme("ace/theme/tomorrow");
     editor.getSession().setMode("ace/mode/" + this.state.theme);
 
@@ -94,6 +99,7 @@ var Editor = React.createClass({
     });
 
     editor.setValue(this.props.codeBlock);
+    editor.setValue(editor.getValue(), -1); //To prevent highlighting all lines
   },
   handleGutterClick: function(clickEvent){
     this.setState({
@@ -121,7 +127,8 @@ var Editor = React.createClass({
     this.setState({stamps: arr});
   },
   eachStamp: function(stamp, i){
-    return (<Stamp key={stamp.id}
+    return (<Stamp
+              key={stamp.id}
               index={i}
               onChange={this.update}
               onRemove={this.remove}
@@ -131,8 +138,6 @@ var Editor = React.createClass({
   render: function(){
     return (
       <div>
-        {//<button onClick={this.edit} className='btn btn-primary glyphicon glyphicon-pencil'/>}
-        }
         {this.state.stamps.map(this.eachStamp)}
         <div id="editor" className='col-lg-6 col-lg-offset-3'>
 

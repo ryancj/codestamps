@@ -26,3 +26,7 @@
   box-shadow: none;
   resize:none;
 }
+
+.stamptest {
+  background-color: red;
+}
