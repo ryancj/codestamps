@@ -53,6 +53,7 @@
   border-top: 26px solid transparent;
   border-left: 26px solid #67D5B5;
   border-bottom: 0px solid transparent;
+  z-index: -1;
 }
 
 #stamptail-pink:before {
@@ -77,6 +78,7 @@
   border-top: 26px solid transparent;
   border-left: 26px solid #EE7785;
   border-bottom: 0px solid transparent;
+  z-index: -1;
 }
 
 #stamptail-purple:before {
@@ -101,6 +103,7 @@
   border-top: 26px solid transparent;
   border-left: 26px solid #C89EC4;
   border-bottom: 0px solid transparent;
+  z-index: -1;
 }
 
 #stamptail-blue:before {
@@ -125,4 +128,5 @@
   border-top: 26px solid transparent;
   border-left: 26px solid #84B1ED;
   border-bottom: 0px solid transparent;
+  z-index: -1;
 }

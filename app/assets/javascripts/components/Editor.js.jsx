@@ -17,21 +17,37 @@ var Stamp = React.createClass({
   changeColor: function(){
     if (this.state.stampColor === 'color-green'){
       this.setState({stampColor: 'color-pink'});
-      this.setState({stampTail: 'stamptail-pink'});
+      if (this.state.sidePos === 165){
+        this.setState({stampTail: 'stamptail-pink'});
+      } else {
+        this.setState({stampTail: 'stamptail-pink-right'});
+      }
     } else if (this.state.stampColor === 'color-pink'){
       this.setState({stampColor: 'color-purple'});
-      this.setState({stampTail: 'stamptail-purple'});
+      if (this.state.sidePos === 165){
+        this.setState({stampTail: 'stamptail-purple'});
+      } else {
+        this.setState({stampTail: 'stamptail-purple-right'});
+      }
     } else if (this.state.stampColor === 'color-purple'){
       this.setState({stampColor: 'color-blue'});
-      this.setState({stampTail: 'stamptail-blue'});
+      if (this.state.sidePos === 165){
+        this.setState({stampTail: 'stamptail-blue'});
+      } else {
+        this.setState({stampTail: 'stamptail-blue-right'});
+      }
     } else if (this.state.stampColor === 'color-blue'){
       this.setState({stampColor: 'color-green'});
-      this.setState({stampTail: 'stamptail-green'});
+      if (this.state.sidePos === 165){
+        this.setState({stampTail: 'stamptail-green'});
+      } else {
+        this.setState({stampTail: 'stamptail-green-right'});
+      }
     }
   },
   swapSides: function(){
     if (this.state.sidePos === 165){
-      this.setState({sidePos: 1105});
+      this.setState({sidePos: 1104});
       this.setState({stampTail: this.state.stampTail + '-right'});
     } else {
       this.setState({sidePos: 165});
