@@ -5,18 +5,6 @@
   border: 1px solid black;
 }
 
-#stamptail:before {
-  content:"";
-  position: absolute;
-  left: 100%;
-  top: 35px;
-  width: 0;
-  height: 0;
-  border-top: 13px solid transparent;
-  border-left: 26px solid #67D5B5;
-  border-bottom: 13px solid transparent;
-}
-
 #stampform {
   background-color: transparent;
   color: white;
@@ -41,4 +29,100 @@
 
 .color-blue {
   background-color: #84B1ED;
+}
+
+#stamptail-green:before {
+  content:"";
+  position: absolute;
+  left: 87%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-right: 26px solid #67D5B5;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-green-right:before {
+  content:"";
+  position: absolute;
+  left: 0%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-left: 26px solid #67D5B5;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-pink:before {
+  content:"";
+  position: absolute;
+  left: 87%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-right: 26px solid #EE7785;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-pink-right:before {
+  content:"";
+  position: absolute;
+  left: 0%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-left: 26px solid #EE7785;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-purple:before {
+  content:"";
+  position: absolute;
+  left: 87%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-right: 26px solid #C89EC4;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-purple-right:before {
+  content:"";
+  position: absolute;
+  left: 0%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-left: 26px solid #C89EC4;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-blue:before {
+  content:"";
+  position: absolute;
+  left: 87%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-right: 26px solid #84B1ED;
+  border-bottom: 0px solid transparent;
+}
+
+#stamptail-blue-right:before {
+  content:"";
+  position: absolute;
+  left: 0%;
+  top: -15px;
+  width: 0;
+  height: 26px;
+  border-top: 26px solid transparent;
+  border-left: 26px solid #84B1ED;
+  border-bottom: 0px solid transparent;
 }

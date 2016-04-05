@@ -4,19 +4,12 @@ var Stamp = React.createClass({
   getInitialState: function(){
     return {isEditing: false,
             stampColor: 'color-green',
-            stampTail: 'stamptail',
-            yPosition: this.props.yPos}
+            stampTail: 'stamptail-green',
+            yPosition: this.props.yPos,
+            sidePos: 165}
   },
   componentWillMount(){
     this.setState({yPosition: this.props.yPos})
-    this.style = {
-      width: 200,
-      height: 100,
-      position: 'absolute',
-      borderRadius: 10,
-      left: 145,
-      top: this.state.yPosition - 50 //To align mouse click with stamp tip
-    };
   },
   componentDidMount: function(){
     $(this.getDOMNode()).draggable();
@@ -24,16 +17,28 @@ var Stamp = React.createClass({
   changeColor: function(){
     if (this.state.stampColor === 'color-green'){
       this.setState({stampColor: 'color-pink'});
+      this.setState({stampTail: 'stamptail-pink'});
     } else if (this.state.stampColor === 'color-pink'){
       this.setState({stampColor: 'color-purple'});
+      this.setState({stampTail: 'stamptail-purple'});
     } else if (this.state.stampColor === 'color-purple'){
       this.setState({stampColor: 'color-blue'});
+      this.setState({stampTail: 'stamptail-blue'});
     } else if (this.state.stampColor === 'color-blue'){
       this.setState({stampColor: 'color-green'});
+      this.setState({stampTail: 'stamptail-green'});
     }
   },
   swapSides: function(){
-    alert('this swaps sides');
+    if (this.state.sidePos === 165){
+      this.setState({sidePos: 1105});
+      this.setState({stampTail: this.state.stampTail + '-right'});
+    } else {
+      this.setState({sidePos: 165});
+      this.setState({stampTail: this.state.stampTail.replace('-right','')});
+    }
+
+    console.log(this.state.stampTail)
   },
   edit: function(){
     this.setState({isEditing: true});
@@ -60,13 +65,22 @@ var Stamp = React.createClass({
   },
   renderForm: function(){
     return (
-      <div className={this.state.stampColor} style={this.style} id='stamptail' >
+      <div className={this.state.stampColor} style={this.style} id={this.state.stampTail}>
         <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
     );
   },
   render: function(){
+    this.style = {
+      width: 200,
+      height: 100,
+      position: 'absolute',
+      borderRadius: 10,
+      left: this.state.sidePos,
+      top: this.state.yPosition + 18 //To align mouse click with stamp tip
+    }
+
     if (this.state.isEditing) {
       return this.renderForm();
     }
