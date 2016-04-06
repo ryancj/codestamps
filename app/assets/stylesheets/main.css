@@ -16,6 +16,21 @@
   resize:none;
 }
 
+div.stamp p {
+  color: white;
+  padding: 5px;
+}
+
+div.stamp > span {
+  position: absolute;
+  opacity: 0;
+  transition: opacity .25s linear;
+}
+
+div.stamp:hover > span {
+  opacity: 1;
+}
+
 .color-green {
   background-color: #67D5B5;
 }

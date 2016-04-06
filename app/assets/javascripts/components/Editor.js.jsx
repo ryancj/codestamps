@@ -2,7 +2,8 @@
 
 var Stamp = React.createClass({
   getInitialState: function(){
-    return {isEditing: false,
+    return {isShrunk: false,
+            isEditing: false,
             stampColor: 'color-green',
             stampTail: 'stamptail-green',
             yPosition: this.props.yPos,
@@ -13,6 +14,14 @@ var Stamp = React.createClass({
   },
   componentDidMount: function(){
     $(this.getDOMNode()).draggable();
+  },
+  shrinkStamp: function(){
+    var styles = {height: 26, width: 26, backgroundColor: 'red'}
+    this.setState({isShrunk: true});
+    return <div onClick={this.revertStamp} style={styles}></div>
+  },
+  revertStamp: function(){
+    this.setState({isShrunk: false});
   },
   changeColor: function(){
     if (this.state.stampColor === 'color-green'){
@@ -68,9 +77,10 @@ var Stamp = React.createClass({
   },
   renderDisplay: function(){
     return (
-      <div className={this.state.stampColor} style={this.style} id={this.state.stampTail}>
+      <div className={this.state.stampColor + ' stamp'} style={this.style} id={this.state.stampTail}>
         <p>{this.props.children}</p>
         <span>
+          <button onClick={this.shrinkStamp} className='btn btn-primary btn-sm glyphicon glyphicon-unchecked'/>
           <button onClick={this.changeColor} className='btn btn-primary btn-sm glyphicon glyphicon-tint'/>
           <button onClick={this.swapSides} className='btn btn-primary btn-sm glyphicon glyphicon-resize-horizontal'/>
           <button onClick={this.edit} className='btn btn-primary btn-sm glyphicon glyphicon-pencil'/>
@@ -81,7 +91,7 @@ var Stamp = React.createClass({
   },
   renderForm: function(){
     return (
-      <div className={this.state.stampColor} style={this.style} id={this.state.stampTail}>
+      <div className={this.state.stampColor + ' stamp'} style={this.style} id={this.state.stampTail}>
         <textarea ref="newText" id='stampform' className='form-control' defaultValue={this.props.children}></textarea>
         <button onClick={this.save} className='btn btn-success btn-sm glyphicon glyphicon-floppy-disk'/>
       </div>
@@ -96,11 +106,11 @@ var Stamp = React.createClass({
       left: this.state.sidePos,
       top: this.state.yPosition + 18 //To align mouse click with stamp tip
     }
-
-    if (this.state.isEditing) {
+    if (this.state.isShrunk) {
+      return this.shrinkStamp();
+    } else if (this.state.isEditing) {
       return this.renderForm();
-    }
-    else {
+    } else {
       return this.renderDisplay();
     }
   }
