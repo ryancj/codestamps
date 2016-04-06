@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
 
-  resources :snippets
+  resources :users
+  resources :snippets do
+    resources :stamps, only: [:index, :create]
+  end
+  resources :stamps, only: [:update, :destroy]
+
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
+
   root 'snippets#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
