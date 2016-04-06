@@ -1,4 +1,4 @@
-$navbar-height: 35px;
+$navbar-height: 45px;
 $brand-primary: #67D5B5;
 
 @import "bootstrap-sprockets";
@@ -8,8 +8,12 @@ $brand-primary: #67D5B5;
   display: inline-block;
 }
 
+.navbar {
+  border: 0px;
+}
+
 .navbar-nav {
-  margin-top: -10px;
+  margin-top: -20px;
 }
 
 .glyphicon-indent-left {
