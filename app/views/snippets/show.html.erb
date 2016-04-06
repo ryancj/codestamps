@@ -1,4 +1,3 @@
 <div class="container-fluid">
-  <h1>codestamps</h1>
   <%= react_component('Editor', theme: @snippet.theme, codeBlock: @snippet.codeblock, snippet_id: @snippet.id, stamps: @snippet.stamps.map{|stamp| StampSerializer.new(stamp).serializable_hash}) %>
 </div>

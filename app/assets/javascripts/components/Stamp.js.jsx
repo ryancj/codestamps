@@ -12,6 +12,10 @@ var Stamp = React.createClass({
   componentDidMount: function(){
     $(this.getDOMNode()).draggable();
   },
+  addComment: function(){
+    var editor = ace.edit("editor");
+    editor.insert('#' + this.props.children + '\n\n');
+  },
   changeColor: function(){
     if (this.state.stampColor === 'color-green'){
       this.setState({stampColor: 'color-pink'});
@@ -67,9 +71,10 @@ var Stamp = React.createClass({
       <div className={this.state.stampColor + ' stamp'} style={this.style} id={this.state.stampTail}>
         <p>{this.props.children}</p>
         <span>
-          <button onClick={this.changeColor} className='btn btn-primary btn-sm glyphicon glyphicon-tint'/>
-          <button onClick={this.swapSides} className='btn btn-primary btn-sm glyphicon glyphicon-resize-horizontal'/>
-          <button onClick={this.edit} className='btn btn-primary btn-sm glyphicon glyphicon-pencil'/>
+          <button onClick={this.addComment} className='btn btn-sm glyphicon glyphicon-indent-left'/>
+          <button onClick={this.changeColor} className='btn btn-sm glyphicon glyphicon-tint'/>
+          <button onClick={this.swapSides} className='btn btn-sm glyphicon glyphicon-resize-horizontal'/>
+          <button onClick={this.edit} className='btn btn-sm glyphicon glyphicon-pencil'/>
           <button onClick={this.remove} className='btn btn-danger btn-sm glyphicon glyphicon-trash'/>
         </span>
       </div>

@@ -1,29 +1,40 @@
+$navbar-height: 35px;
+$brand-primary: #67D5B5;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.glyphicon-unchecked {
-  top: 55px;
-  left: 40px;
+.btn {
+  display: inline-block;
+}
+
+.navbar-nav {
+  margin-top: -10px;
+}
+
+.glyphicon-indent-left {
+  top: 90px;
+  left: 5px;
 }
 
 .glyphicon-tint {
-  top: 55px;
-  left: 45px;
+  top: 90px;
+  left: 10px;
 }
 
 .glyphicon-resize-horizontal {
-  top: 55px;
-  left: 50px;
+  top: 90px;
+  left: 15px;
 }
 
 .glyphicon-pencil {
-  top: 55px;
-  left: 55px;
+  top: 90px;
+  left: 20px;
 }
 
 .glyphicon-trash {
-  top: 55px;
-  left: 60px;
+  top: 90px;
+  left: 25px;
 }
 
 ///////////////////////////

@@ -6,23 +6,42 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-  <nav>
-    <%= link_to 'Home', root_path %> |
-    <%= link_to 'New User', new_user_path %> |
-    <%= link_to 'New Snippet', snippets_path %> |
-    <% if user_signed_in? %>
-      Hello <%= current_user.full_name %>,
-      <%= link_to "Logout", sessions_path, method: :delete,
-      data: {confirm: "are you sure you want to log out?"}%>
-    <% else %>
-      <%= link_to "Login", new_session_path %> |
-      <%= link_to "Sign Up", new_user_path %>
-    <% end %>
-  <%= flash[:noice] || flash[:alert] %>
-</nav>
+  <body>
+    <nav class='navbar'>
+      <div class='container'>
+        <div class="navbar-header">
+          <div class="navbar-brand pull-left">
+            <%= image_tag('logo.png', class: 'logo', width: '30%') %>
+          </div>
+        </div>
+        <ul class="nav navbar-nav pull-right">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'New User', new_user_path %></li>
+          <li><%= link_to 'New Snippet', new_snippet_path %></li>
+          <% if user_signed_in? %>
+            <li>Hello <%= current_user.full_name %>,</li>
+            <li><%= link_to "Logout", sessions_path, method: :delete,
+            data: {confirm: "are you sure you want to log out?"}%></li>
+          <% else %>
+            <li><%= link_to "Login", new_session_path %></li>
+            <li><%= link_to "Sign Up", new_user_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-  <%= yield %>
+    <%= yield %>
 
-</body>
+  <div class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container-fluid">
+        <p class="navbar-text pull-left">© 2016 - codestamps Built By Ryan Ching.
+          <a href="https://ca.linkedin.com/in/ryching">Linkedin</a>
+        </p>
+
+        <a href="https://github.com/ryancj/codestamps" class="navbar-btn btn-danger btn pull-right">
+        <span class="glyphicon glyphicon-star"></span>Github Link</a>
+      </div>
+    </div>
+  </body>
 </html>

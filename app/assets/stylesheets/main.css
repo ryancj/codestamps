@@ -2,22 +2,28 @@
   position: absolute;
   width: 50%;
   height: 90%;
-  border: 1px solid #67D5B5;
+  border: 2px dashed #67D5B5;
   z-index: -2;
 }
 
 #stampform {
   background-color: transparent;
-  color: white;
   border: none;
   overflow: auto;
   outline: none;
   box-shadow: none;
   resize:none;
+  max-width: 195px;
+}
+.stamp {
+  cursor: -webkit-grab;
+  box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+  position: absolute;
+  /*overflow:auto*/
 }
 
 div.stamp p {
-  color: white;
+  position: relative;
   padding: 5px;
 }
 
