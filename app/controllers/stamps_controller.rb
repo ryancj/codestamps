@@ -24,7 +24,9 @@ class StampsController < ApplicationController
   end
 
   def destroy
-    
+    @stamp = Stamp.find(params[:id])
+    @stamp.destroy
+    render json: @stamp
   end
 
   private

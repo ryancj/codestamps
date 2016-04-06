@@ -1,7 +1,6 @@
 var Stamp = React.createClass({
   getInitialState: function(){
-    return {isShrunk: false,
-            isEditing: false,
+    return {isEditing: false,
             stampColor: 'color-green',
             stampTail: 'stamptail-green',
             yPosition: this.props.yPos,
@@ -11,16 +10,7 @@ var Stamp = React.createClass({
     this.setState({yPosition: this.props.yPos})
   },
   componentDidMount: function(){
-    console.log("mounted", "move me to ", this.props.yPos);
     $(this.getDOMNode()).draggable();
-  },
-  shrinkStamp: function(){
-    var styles = {height: 26, width: 26, backgroundColor: 'red'}
-    this.setState({isShrunk: true});
-    return <div onClick={this.revertStamp} style={styles}></div>
-  },
-  revertStamp: function(){
-    this.setState({isShrunk: false});
   },
   changeColor: function(){
     if (this.state.stampColor === 'color-green'){
@@ -61,8 +51,6 @@ var Stamp = React.createClass({
       this.setState({sidePos: 165});
       this.setState({stampTail: this.state.stampTail.replace('-right','')});
     }
-
-    console.log(this.state.stampTail)
   },
   edit: function(){
     this.setState({isEditing: true});
@@ -79,7 +67,6 @@ var Stamp = React.createClass({
       <div className={this.state.stampColor + ' stamp'} style={this.style} id={this.state.stampTail}>
         <p>{this.props.children}</p>
         <span>
-          <button onClick={this.shrinkStamp} className='btn btn-primary btn-sm glyphicon glyphicon-unchecked'/>
           <button onClick={this.changeColor} className='btn btn-primary btn-sm glyphicon glyphicon-tint'/>
           <button onClick={this.swapSides} className='btn btn-primary btn-sm glyphicon glyphicon-resize-horizontal'/>
           <button onClick={this.edit} className='btn btn-primary btn-sm glyphicon glyphicon-pencil'/>

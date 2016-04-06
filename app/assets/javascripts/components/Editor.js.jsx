@@ -37,7 +37,7 @@ var Editor = React.createClass({
     this.addStamp();
   },
   addStamp: function(text){
-    var component = this
+    var component = this;
 
     $.ajax({
         url: '/snippets/' + this.props.snippet_id + '/stamps',
@@ -54,7 +54,8 @@ var Editor = React.createClass({
       });
   },
   update: function(newText, i){
-    var component = this
+    var component = this;
+
     var arr = component.state.stamps;
     arr[i].stamp = newText;
     $.ajax({
@@ -66,9 +67,17 @@ var Editor = React.createClass({
       });
   },
   remove: function(i){
-    var arr = this.state.stamps;
-    arr.splice(i, 1);
-    this.setState({stamps: arr});
+    var component = this;
+
+    var arr = component.state.stamps;
+    $.ajax({
+        url: '/stamps/' + arr[i].id,
+        method: "DELETE",
+        data: {state: arr[i]}
+      }).done(function(res) {
+        arr.splice(i, 1);
+        component.setState({stamps: arr});
+      });
   },
   eachStamp: function(stamp, i){
     return (<Stamp
