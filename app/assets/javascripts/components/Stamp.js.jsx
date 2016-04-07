@@ -16,7 +16,7 @@ var Stamp = React.createClass({
     var editor = ace.edit("editor");
     editor.insert('#' + this.props.children + '\n\n');
   },
-  changeColor: function(){
+  changeColor: function(){ //I'm sure there's a better way to do this!
     if (this.state.stampColor === 'color-green'){
       this.setState({stampColor: 'color-pink'});
       if (this.state.sidePos === 165){
@@ -97,9 +97,8 @@ var Stamp = React.createClass({
       left: this.state.sidePos,
       top: parseInt(this.state.yPosition) + 18 //To align mouse click with stamp tip
     }
-    if (this.state.isShrunk) {
-      return this.shrinkStamp();
-    } else if (this.state.isEditing) {
+
+    if (this.state.isEditing) {
       return this.renderForm();
     } else {
       return this.renderDisplay();

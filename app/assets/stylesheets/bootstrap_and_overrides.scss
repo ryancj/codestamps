@@ -8,17 +8,19 @@ $brand-primary: #67D5B5;
   display: inline-block;
 }
 
-.navbar {
+.navbar.top {
   border: 0px;
+  margin-top: -20px;
+  padding-bottom: 5px;
+  background-color: white;
 }
 
 .navbar-nav {
   margin-top: -20px;
 }
 
-///////////////////////////
-
 .glyphicon-floppy-disk {
+  position: relative;
   top: 12px;
   left: 160px;
 }
