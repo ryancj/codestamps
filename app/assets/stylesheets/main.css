@@ -30,8 +30,14 @@ div.stamp p {
 
 div.stamp > span {
   position: absolute;
+  bottom: -40px;
+  right: 3px;
   opacity: 0;
   transition: opacity .25s linear;
+}
+
+div.stamp button {
+  margin: 2px;
 }
 
 div.stamp:hover > span {
