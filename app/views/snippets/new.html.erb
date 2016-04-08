@@ -1,1 +1,2 @@
 <%= react_component('Editor', theme: @snippet.theme, codeBlock: @snippet.codeblock, snippet_id: @snippet.id, stamps: @snippet.stamps.map{|stamp| StampSerializer.new(stamp).serializable_hash}) %>
+<a href='http://localhost:3000/snippets/1'><button class='btn btn-sm btn-success glyphicon glyphicon-plus'></button></a>
