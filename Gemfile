@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'rails_12factor', group: :production
 
 # Console
 gem 'interactive_editor'

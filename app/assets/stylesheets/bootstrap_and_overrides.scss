@@ -1,5 +1,6 @@
 $navbar-height: 45px;
 $brand-primary: #67D5B5;
+$brand-danger: #EE7785;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -24,6 +25,7 @@ $brand-primary: #67D5B5;
   top: 12px;
   left: 160px;
   background-color: #EE7785 !important;
+  border: 1px solid rgba(255, 0, 0, .5) !important;
 }
 
 .glyphicon-trash {

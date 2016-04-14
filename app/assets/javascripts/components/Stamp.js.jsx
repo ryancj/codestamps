@@ -4,7 +4,7 @@ var Stamp = React.createClass({
             stampColor: 'color-green',
             stampTail: 'stamptail-green',
             yPosition: this.props.yPos,
-            sidePos: 140}
+            sidePos: '13%'}
   },
   componentWillMount(){
     this.setState({yPosition: this.props.yPos})
@@ -14,33 +14,38 @@ var Stamp = React.createClass({
   },
   addComment: function(){
     var editor = ace.edit("editor");
-    editor.insert('#' + this.props.children + '\n\n');
+    if (this.props.children === undefined){
+      var commentToInsert = 'New Comment';
+    } else {
+      var commentToInsert = this.props.children
+    }
+    editor.insert('#' + commentToInsert + '\n');
   },
   changeColor: function(){ //I'm sure there's a better way to do this!
     if (this.state.stampColor === 'color-green'){
       this.setState({stampColor: 'color-pink'});
-      if (this.state.sidePos === 140){
+      if (this.state.sidePos === '13%'){
         this.setState({stampTail: 'stamptail-pink'});
       } else {
         this.setState({stampTail: 'stamptail-pink-right'});
       }
     } else if (this.state.stampColor === 'color-pink'){
       this.setState({stampColor: 'color-purple'});
-      if (this.state.sidePos === 140){
+      if (this.state.sidePos === '13%'){
         this.setState({stampTail: 'stamptail-purple'});
       } else {
         this.setState({stampTail: 'stamptail-purple-right'});
       }
     } else if (this.state.stampColor === 'color-purple'){
       this.setState({stampColor: 'color-blue'});
-      if (this.state.sidePos === 140){
+      if (this.state.sidePos === '13%'){
         this.setState({stampTail: 'stamptail-blue'});
       } else {
         this.setState({stampTail: 'stamptail-blue-right'});
       }
     } else if (this.state.stampColor === 'color-blue'){
       this.setState({stampColor: 'color-green'});
-      if (this.state.sidePos === 140){
+      if (this.state.sidePos === '13%'){
         this.setState({stampTail: 'stamptail-green'});
       } else {
         this.setState({stampTail: 'stamptail-green-right'});
@@ -48,11 +53,11 @@ var Stamp = React.createClass({
     }
   },
   swapSides: function(){
-    if (this.state.sidePos === 140){
-      this.setState({sidePos: 1129});
+    if (this.state.sidePos === '13%'){
+      this.setState({sidePos: '75.3%'});
       this.setState({stampTail: this.state.stampTail + '-right'});
     } else {
-      this.setState({sidePos: 140});
+      this.setState({sidePos: '13%'});
       this.setState({stampTail: this.state.stampTail.replace('-right','')});
     }
   },
@@ -91,7 +96,7 @@ var Stamp = React.createClass({
   render: function(){
     this.style = {
       width: 200,
-      height: 140,
+      height: 100,
       position: 'absolute',
       borderRadius: 10,
       left: this.state.sidePos,

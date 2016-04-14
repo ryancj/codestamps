@@ -22,6 +22,7 @@ var Editor = React.createClass({
     editor.getSession().setMode("ace/mode/" + this.state.theme);
 
     var reactComp = this;
+
     editor.on('gutterclick', function(e){
       reactComp.handleGutterClick(e);
     });
@@ -58,12 +59,14 @@ var Editor = React.createClass({
 
     var arr = component.state.stamps;
     arr[i].stamp = newText;
+    console.log(arr)
     $.ajax({
         url: '/stamps/' + arr[i].id,
         method: "PATCH",
         data: {state: arr[i]}
       }).done(function(res) {
         component.setState({stamps:arr});
+        console.log(arr[i])
       });
   },
   remove: function(i){
@@ -92,8 +95,7 @@ var Editor = React.createClass({
     return (
       <div>
         {this.state.stamps.map(this.eachStamp)}
-        <div id="editor" className='col-lg-6 col-lg-offset-3'>
-
+        <div id='editor' className='col-lg-6 col-lg-offset-3'>
         </div>
       </div>
     )
