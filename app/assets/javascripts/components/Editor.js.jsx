@@ -59,14 +59,13 @@ var Editor = React.createClass({
 
     var arr = component.state.stamps;
     arr[i].stamp = newText;
-    console.log(arr)
+
     $.ajax({
         url: '/stamps/' + arr[i].id,
         method: "PATCH",
         data: {state: arr[i]}
       }).done(function(res) {
         component.setState({stamps:arr});
-        console.log(arr[i])
       });
   },
   remove: function(i){

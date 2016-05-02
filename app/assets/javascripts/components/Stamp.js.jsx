@@ -4,7 +4,7 @@ var Stamp = React.createClass({
             stampColor: 'color-green',
             stampTail: 'stamptail-green',
             yPosition: this.props.yPos,
-            sidePos: '13%'}
+            sidePos: '15.9%'}
   },
   componentWillMount(){
     this.setState({yPosition: this.props.yPos})
@@ -24,28 +24,28 @@ var Stamp = React.createClass({
   changeColor: function(){ //I'm sure there's a better way to do this!
     if (this.state.stampColor === 'color-green'){
       this.setState({stampColor: 'color-pink'});
-      if (this.state.sidePos === '13%'){
+      if (this.state.sidePos === '15.9%'){
         this.setState({stampTail: 'stamptail-pink'});
       } else {
         this.setState({stampTail: 'stamptail-pink-right'});
       }
     } else if (this.state.stampColor === 'color-pink'){
       this.setState({stampColor: 'color-purple'});
-      if (this.state.sidePos === '13%'){
+      if (this.state.sidePos === '15.9%'){
         this.setState({stampTail: 'stamptail-purple'});
       } else {
         this.setState({stampTail: 'stamptail-purple-right'});
       }
     } else if (this.state.stampColor === 'color-purple'){
       this.setState({stampColor: 'color-blue'});
-      if (this.state.sidePos === '13%'){
+      if (this.state.sidePos === '15.9%'){
         this.setState({stampTail: 'stamptail-blue'});
       } else {
         this.setState({stampTail: 'stamptail-blue-right'});
       }
     } else if (this.state.stampColor === 'color-blue'){
       this.setState({stampColor: 'color-green'});
-      if (this.state.sidePos === '13%'){
+      if (this.state.sidePos === '15.9%'){
         this.setState({stampTail: 'stamptail-green'});
       } else {
         this.setState({stampTail: 'stamptail-green-right'});
@@ -53,11 +53,11 @@ var Stamp = React.createClass({
     }
   },
   swapSides: function(){
-    if (this.state.sidePos === '13%'){
+    if (this.state.sidePos === '15.9%'){
       this.setState({sidePos: '75.3%'});
       this.setState({stampTail: this.state.stampTail + '-right'});
     } else {
-      this.setState({sidePos: '13%'});
+      this.setState({sidePos: '15.9%'});
       this.setState({stampTail: this.state.stampTail.replace('-right','')});
     }
   },

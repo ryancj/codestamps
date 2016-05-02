@@ -9,4 +9,13 @@ class StampSerializer < ActiveModel::Serializer
     object.state["yPos"]
   end
 
+  def stampColor
+  end
+
+  def stampTail
+  end
+
+  def sidePos
+  end
+
 end
